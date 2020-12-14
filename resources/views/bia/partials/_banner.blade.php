@@ -36,9 +36,7 @@
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            <div class="item">
-                                <img src="{{ asset('/media/cm-top-icon/bia_process.png') }}" alt="" />
-                            </div>
+                            <div class="item"> <img src="{{ asset('/media/cm-top-icon/bia_process.png') }}" alt="" /> </div>
                         </div>
                     </div>
                 </div>

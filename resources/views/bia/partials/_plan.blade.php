@@ -1,6 +1,6 @@
 @if ( $services )
 {{-- Departmental Roles and Contacts --}}
-{{-- <pre>{{ print_r($drc, true) }}</pre> --}}
+<pre>{{ print_r($services->toArray(), true) }}</pre>
 <form class="row assessment-form"  method="POST">
     @csrf
     <input type="hidden" name="meta" value="drc">

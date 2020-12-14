@@ -1,6 +1,6 @@
 {{-- {{ dd($service_weights ?? null) }} --}}
 @if ( $services )
-    <div class="row d-none">
+    <div class="row">
         <div class="col-lg-12">
             <div class="card card-custom mb-8">
                 <div class="card-body">
@@ -104,7 +104,7 @@
     </div>
     {{-- critical impact critera --}}
     {{-- <pre>{{ print_r($cic ?? null, true) }}</pre> --}}
-    <form class="row assessment-form d-none"  method="POST">
+    <form class="row assessment-form"  method="POST">
         @csrf
         <input type="hidden" name="meta" value="cic">
         <input type="hidden" name="reset" value="1">
@@ -144,7 +144,7 @@
     </form>
     {{-- maximum acceptable level of data loss --}}
     {{-- <pre>{{ print_r($maldl ?? null, true) }}</pre> --}}
-    <form class="row assessment-form d-none"  method="POST">
+    <form class="row assessment-form"  method="POST">
         @csrf
         <input type="hidden" name="meta" value="maldl">
         <input type="hidden" name="reset" value="1">
@@ -190,7 +190,7 @@
     </form>
     {{-- IT upstream dependencies --}}
     {{-- <pre>{{ print_r($itud ?? null, true) }}</pre> --}}
-    <form class="row assessment-form d-none"  method="POST">
+    <form class="row assessment-form"  method="POST">
         @csrf
         <input type="hidden" name="meta" value="itud">
         <input type="hidden" name="reset" value="1">
@@ -245,7 +245,7 @@
     {{-- secondary IT service requirements --}}
     {{-- <pre>{{ print_r($sitsr ?? null, true) }}</pre> --}}
     @if ( !empty($tiers) )
-        <form class="row assessment-form d-none"  method="POST">
+        <form class="row assessment-form"  method="POST">
             @csrf
             <input type="hidden" name="meta" value="sitsr">
             <input type="hidden" name="reset" value="1">
@@ -278,7 +278,7 @@
                                             if ( !empty($sitsr->$tireName) ) { $tireVal = $sitsr->$tireName; $tireCls = 'bg-darkred'; }
                                             else { $tireVal = null; $tireCls = 'bg-lightgreen'; }
                                         @endphp
-                                        <td class="dependency {{ $tireCls }}" data-title="IT service requirements" data-type="external_dependencies"><input type="hidden" id="{{ $tireName }}" name="{{ $tireName }}" value="{{ $tireVal }}"></td>
+                                        <td class="dependency {{ $tireCls }}" data-title="IT service requirements" data-type="upstream_dependencies"><input type="hidden" id="{{ $tireName }}" name="{{ $tireName }}" value="{{ $tireVal }}"></td>
                                     @endforeach
                                 </tr>
                             @endforeach
@@ -293,7 +293,7 @@
     @endif
      {{-- additional functions --}}
     {{-- <pre>{{ print_r($af ?? null, true) }}</pre> --}}
-    <form class="row assessment-form d-none"  method="POST">
+    <form class="row assessment-form"  method="POST">
         @csrf
         <input type="hidden" name="meta" value="af">
         <input type="hidden" name="reset" value="1">

@@ -6,9 +6,10 @@ use App\Bia;
 use Illuminate\Http\Request;
 use App\Helpers\Common;
 
-class BiaController extends Controller {
-    function assessment(Request $request, $biaId, $departmentId, $sectionId=null) {
-        
+class BiaController extends Controller 
+{
+    function assessment(Request $request, $biaId, $departmentId, $sectionId=null) 
+    {
         $defaultArgs                = [
             ['bia_id', '=', $biaId],
             ['department_id', '=', $departmentId],
@@ -57,32 +58,6 @@ class BiaController extends Controller {
         // dd($data);
         return view('bia.assessment', $data);
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request, $biaId, $departmentId, $sectionId) 
     {
         // $validator = Validator::make($request->all(), [
@@ -116,7 +91,6 @@ class BiaController extends Controller {
                 }
             }
         } else {
-
             $param = ['bia'=>$biaId, 'department'=>$departmentId, 'section'=>$sectionId];
             $input = $this->clean($request->all());
             if ( !empty($input['meta']) ) {
@@ -148,52 +122,24 @@ class BiaController extends Controller {
             return redirect()->route('bia.assessment', $param)->with('failed',"operation failed");
         }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    function reset( Request $request, $biaId, $departmentId, $sectionId=null ) 
     {
-        //
+        if ( request()->ajax() && !empty($biaId) ) {
+            if ( !empty($biaId) && !empty($departmentId) && !empty($sectionId) ) {
+                try{
+                    $args   = [ ['bia_id', '=', $biaId] ];
+                    if ( !empty($departmentId) ) $args[] = ['department_id', '=', $departmentId];
+                    if ( !empty($sectionId) ) $args[] = ['section_id', '=', $sectionId];
+                    $status = \App\BiaAssessment::where($args)->delete();
+                    if ( $status ) return ['code' => 200, 'status' => 'success', 'message' => 'Data has been removed successfully'];
+                }
+                catch(Exception $e) {
+                    return ['code' => 201, 'status' => 'failed', 'message' => 'operation failed'];
+                }
+            }
+        }
+        return ['code' => 202, 'status' => 'failed', 'message' => 'operation failed'];
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-    
     public function clean($input) {
         $data = null;
         if ( isset($input['_token']) ) unset($input['_token']);

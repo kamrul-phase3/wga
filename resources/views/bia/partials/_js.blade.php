@@ -40,7 +40,6 @@ $(document).ready(function() {
 	// SHOW UPSTREAM POPUP
 	$(document).on('click', '.dependency', function(event) {
 		event.preventDefault();
-		$.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
 		var button 	= $(this);
 		var dependencyType = button.attr('data-type');
 		// var url 	= getDependencyUrl(dependencyType)
@@ -70,7 +69,6 @@ $(document).ready(function() {
 				},
 			})
 		}
-
 	})
 	$(document).on('click', '#dependencyModal .btn-save', function(event) {
 		event.preventDefault();
@@ -91,6 +89,44 @@ $(document).ready(function() {
 	})
 	$('#dependencyModal').on('hidden.bs.modal', function () {
 		$('.dependency.editing').removeClass('editing');
+	})
+	// TOP ACTION BUTTONS
+	$(document).on('click', '.btn-publish', function (event) {
+		event.preventDefault();
+		// swal("Error!", "Something went wrong.", "error")
+		if ( confirm() ) {
+			alert( 'var' )
+		}
+	})
+	$(document).on('click', '.btn-save-all', function (event) {
+		event.preventDefault();
+		$('form.assessment-form').each(function(e) {
+			let url = "{{ route('bia.assessment', ['bia'=>$biaId, 'department'=>$departmentId, 'section'=>$sectionId]) }}";
+        	ajaxSave($(this), url);
+		})
+	})
+	$(document).on('click', '.btn-reset-all', function (event) {
+		event.preventDefault();
+		var button 	= $(this);
+		var url 	= "{{ route('bia.reset', ['bia'=>$biaId, 'department'=>$departmentId, 'section'=>$sectionId]) }}";
+
+		if ( url ) {
+			var oldTxt = button.text();
+			$.ajax({
+				url: url,
+				method : 'POST',
+				data: {},
+				beforeSend: function() { ajaxBtnStatusSaving(button) },
+				success: function(response) {
+					 ajaxBtnStatusActive(button, oldTxt);
+					 notify(response, true);
+				},
+				error: function(error) {
+					 ajaxBtnStatusActive(button, oldTxt)
+					 notify(response);
+				},
+			})
+		}
 	})
 
 	// DOCUMENT READY - END

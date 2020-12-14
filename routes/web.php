@@ -5,6 +5,7 @@ Route::middleware(['web', 'auth'])->group(function () {
 	// BIA
 	Route::get('/bia/{bia}/department/{department}/section/{section}/', 'BiaController@assessment')->name('bia.assessment');
 	Route::post('/bia/{bia}/department/{department}/section/{section}/', 'BiaController@store')->name('bia.assessment');
+	Route::post('/bia/{bia}/department/{department}/section/{section}/reset', 'BiaController@reset')->name('bia.reset');
 	// COMPANY
 	Route::get('/company/{company}/dependencies/', 'CompanyController@dependencies')->name('company.dependencies');
 	// USER SWITCHING

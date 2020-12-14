@@ -14,7 +14,8 @@ class BiaHelper {
 	public function questions($services) {
 		if ($services->isEmpty()) return null;
 		else {
-			$arr = [];
+			$arr = null;
+			$arr[null] = 'Select service/process';
 			foreach ($services as $service) {
 				$arr[$service->id] = $service->name;
 			}

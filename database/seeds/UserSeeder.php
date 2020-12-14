@@ -41,9 +41,9 @@ class UserSeeder extends Seeder {
     public function advisors() {
         return [
             // ['name' => 'PORTAL ADMIN PORTAL ADMIN', 'email' => 'info@wgadvisory.ca', 'role' => 'Advisor', 'role_id' => 2, 'company_id' => 0 ],
-            ['name' => 'Advisor Wgadvisory', 'email' => 'advisor@wgadvisory.ca', 'password'=> '@Hello244', 'role' => 'Advisor', 'role_id' => 2, 'company_id' => 0 ],
-            // ['name' => 'Gary Walker', 'email' => 'gjwalker@wgadvisory.ca', 'password'=> '@Hello244', 'role' => 'Advisor', 'role_id' => 2, 'company_id' => 0 ],
-            // ['name' => 'Gary Walker', 'email' => 'vandelay@wgadvisory.ca', 'password'=> '@Hello244', 'role' => 'Advisor', 'role_id' => 2, 'company_id' => 0 ]
+            ['name' => 'Advisor Wgadvisory', 'email' => 'advisor@wgadvisory.ca', 'role' => 'Advisor', 'role_id' => 2, 'company_id' => 0 ],
+            // ['name' => 'Gary Walker', 'email' => 'gjwalker@wgadvisory.ca', 'role' => 'Advisor', 'role_id' => 2, 'company_id' => 0 ],
+            // ['name' => 'Gary Walker', 'email' => 'vandelay@wgadvisory.ca', 'role' => 'Advisor', 'role_id' => 2, 'company_id' => 0 ]
         ];
     }
     public function viewers() {
