@@ -13,8 +13,8 @@
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
-        "laravel/nova": "*",
         "laravel/tinker": "^2.0",
+        "laravel/nova": "*",
         "silvanite/novatoolpermissions": "^1.1",
         "whitecube/nova-flexible-content": "^0.2.6"
     },
